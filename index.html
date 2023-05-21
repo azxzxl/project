@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site de Hacking</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #0F0;
+        }
+
+        header {
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #0F0;
+            margin: 0;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #0F0;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            background-color: #00FF00;
+            padding: 5px;
+        }
+
+        ul,
+        ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #0F0;
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            flex: 1;
+            background-color: #333;
+            color: #0F0;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .tab-button.active {
+            background-color: #0F0;
+            color: #000;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabContent, tabButtons;
+            tabContent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabContent.length; i++) {
+                tabContent[i].style.display = "none";
+            }
+            tabButtons = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>[+] azx hacking notes [+]</h1>
+    </header>
+
+    <main>
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'VULNERABILIDADES')">VARREDURA</button>
+            <button class="tab-button" onclick="openTab(event, 'PORT_SCAN')">PORT SCAN</button>
+            <button class="tab-button" onclick="openTab(event, 'ENUMERACAO')">ENUMERAÇÃO</button>
+            <button class="tab-button" onclick="openTab(event, 'BRUTE_FORCE')">BRUTE FORCE</button>
+        </div>
+        <div id="VULNERABILIDADES" class="tab-content active">
+            <h2>[*] Comandos para realizar varreduras [*]</h2>
+            <h3>nmap -vvv -sS --open -Pn -p- -T 5 |IP|</h3>
+            <li>Esse comando realiza uma varredura intensiva e detalhada de todas as portas TCP abertas em uma máquina,
+                fornecendo informações úteis para a identificação de possíveis vulnerabilidades.</li>
+            <h3>nmap -vvv -sV -sC -O -p -T 5 -A --script vuln -Pn |PORTS| |IP|</h3>
+            <li>O comando acima é usado para realizar uma varredura mais completa e detalhada em um alvo, incluindo
+                detecção de versão de serviços, detecção de sistema operacional, teste de vulnerabilidades e execução de
+                scripts personalizados.</li>
+            <h3>nmap -sV --script=vuln</h3>
+            <li>Ao executar esse comando, o Nmap realizará uma varredura de portas no alvo especificado e, em seguida,
+                executará o script de detecção de vulnerabilidades "vuln" nos serviços encontrados nas portas abertas. O
+                Nmap tentará identificar vulnerabilidades conhecidas com base nas versões de serviço detectadas e
+                fornecerá um relatório com os resultados.</li>
+            <h3>nikto -h |alvo|</h3>
+            <li>Substitua |alvo| pelo endereço IP ou nome de domínio da aplicação web que você deseja varrer. Esse
+                comando realizará uma varredura básica em busca de vulnerabilidades conhecidas.</li>
+            <h3>nikto -h |alvo| -o |arquivo_de_saida|</h3>
+            <li>Substitua |alvo| pelo endereço IP ou nome de domínio do site e |arquivo_de_saida| pelo caminho e nome de
+                arquivo onde você deseja salvar os resultados da varredura. Essa opção é útil para revisar os resultados
+                posteriormente ou compartilhá-los com outras pessoas.</li>
+        </div>
+
+        <div id="PORT_SCAN" class="tab-content">
+            <h2>[*] Ferramentas para port scan [*]</h2>
+            <h3>nc -vnz |IP| 80</h3>
+            <li>Escaneia a porta 80 do IP</li>
+            <h3>nc -vz www.exemplo.com 80</h3>
+            <li>Escaneia a porta 80 do site</li>
+            <h3>nc -vnz |IP| 20-1024</h3>
+            <li>Escaneia da porta 20 à 1024</li>
+        </div>
+
+        <div id="ENUMERACAO" class="tab-content">
+            <h2>[*] ENUMERAÇÃO TOOLS [*]</h2>
+            <p>Existem várias ferramentas disponíveis, como as seguintes:</p>
+
+            <h3>dnsenum site.com</h3>
+            <li>Enumeraos registros DNS de um domínio, fornecendo informações sobre os hosts, subdomínios, endereços IP
+                e servidores de email associados.</li>
+            <h3>nmap -p 53 --script=dns-zone-transfer --script-args dns-zone-transfer.domain=site.com</h3>
+            <li>Realiza uma transferência de zona DNS para obter informações sobre a configuração do DNS de um domínio
+                específico.</li>
+
+            <h3>enum4linux -a |IP|</h3>
+            <li>Executa uma enumeração em um host Windows para recuperar informações sobre usuários, compartilhamentos,
+                grupos e políticas de segurança.</li>
+
+            <h3>nbtscan -r |IP range|</h3>
+            <li>Executa uma varredura NetBIOS em um intervalo de IP especificado para obter informações sobre hosts
+                Windows.</li>
+
+            <h3>smtp-user-enum -M VRFY -U /path/to/userlist.txt -t |IP|</h3>
+            <li>Realiza uma enumeração de usuários SMTP para identificar usuários válidos em um servidor de email.</li>
+        </div>
+
+        <div id="BRUTE_FORCE" class="tab-content">
+            <h2>[*] Ferramentas para Brute Force [*]</h2>
+            <h3>Hydra</h3>
+            <li>Uso: hydra -l |usuário| -P |caminho/para/wordlist.txt| |IP| -t |número_de_threads| ssh</li>
+            <li>Exemplo: hydra -l admin -P /usr/share/wordlists/rockyou.txt 192.168.0.1 -t 16 ssh</li>
+
+            <h3>Medusa</h3>
+            <li>Uso: medusa -u |usuário| -P |caminho/para/wordlist.txt| -h |IP| -M |serviço|</li>
+            <li>Exemplo: medusa -u admin -P /usr/share/wordlists/rockyou.txt -h 192.168.0.1 -M ssh</li>
+
+            <h3>Patator</h3>
+            <li>Uso: patator ssh_login host=|IP| user=FILE0 password=FILE1 0=/path/to/userlist.txt
+                1=/path/to/passwordlist.txt</li>
+            <li>Exemplo: patator ssh_login host=192.168.0.1 user=FILE0 password=FILE1
+                0=/usr/share/wordlists/usernames.txt 1=/usr/share/wordlists/passwords.txt</li>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Site de Hacking - Todos os direitos reservados.</p>
+    </footer>
+</body>
+
+</html>
